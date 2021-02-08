@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ToolsInstallation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 22px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+	background-color: #1b1b1c;
+	color: #FFF;
+	max-width: 1500px;
+	margin: auto;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color:  burlywood;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	color: #34aced;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: "Courier New", Menlo, Monaco, Consolas, "Droid Sans Mono", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: "Courier New", -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<img src="screenshots/Front1.png">
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1><b>Tools Installation<b></h1>
+<blockquote>
+<p><strong>Owner</strong> : 🧛🏻‍♂️ - Mr. Sup3rN0va | 09-February-2021</p>
+</blockquote>
+<blockquote>
+<p><strong>Tags</strong> : #i0S (📲), #android (📱), #pentesting (👨🏼‍💻), #tools (⚒), #cheatsheet (📜)</p>
+</blockquote>
+<hr>
+<h2><b>Table Of Contents</b></h2>
+<ul>
+<li><a href="#assumption"><strong>Assumption</strong></a></li>
+<li><a href="#tools-installation"><strong>Tools Installation</strong></a>
+<ul>
+<li><a href="#apktool-android"><strong>APKTOOL (Android)</strong></a></li>
+<li><a href="#adb-android"><strong>ADB (Android)</strong></a></li>
+<li><a href="#jadx-android"><strong>JADX (Android)</strong></a></li>
+<li><a href="#bytecode-viewer-android"><strong>ByteCode-Viewer (Android)</strong></a></li>
+<li><a href="#drozer-android"><strong>Drozer (Android)</strong></a></li>
+<li><a href="#hopper-android-and-i0s"><strong>Hopper (Android and i0S)</strong></a></li>
+<li><a href="#burpzap-traffic-inspection"><strong>Burp/ZAP (Traffic Inspection)</strong></a></li>
+<li><a href="#frida-and-frida-tools-android-and-i0s"><strong>Frida and Frida-Tools (Android and i0S)</strong></a></li>
+<li><a href="#frida-android-tracer-android"><strong>Frida Android Tracer (Android)</strong></a></li>
+<li><a href="#android-backup-extractor-android"><strong>Android Backup Extractor (Android)</strong></a></li>
+<li><a href="#pidcat-android"><strong>PIDCAT (Android)</strong></a></li>
+<li><a href="#mobsf-android-and-i0s"><strong>MobSF (Android and i0S)</strong></a></li>
+<li><a href="#androbugs-framework-android"><strong>AndroBugs Framework (Android)</strong></a></li>
+<li><a href="#qark-framework-android"><strong>QARK Framework (Android)</strong></a></li>
+<li><a href="#rms-dexcalibur-and-passionfruit-android-and-i0s"><strong>RMS, Dexcalibur and Passionfruit (Android and i0S)</strong></a></li>
+<li><a href="#radare2-and-r2frida-android-and-i0s"><strong>Radare2 and R2Frida (Android and i0S)</strong></a></li>
+<li><a href="#mara-framework-android"><strong>MARA Framework (Android)</strong></a></li>
+<li><a href="#apkid-android"><strong>APKiD (Android)</strong></a></li>
+<li><a href="#simplify-android"><strong>Simplify (Android)</strong></a></li>
+<li><a href="#iproxy-and-ideviceinstaller-i0s"><strong>iProxy and iDeviceInstaller (i0S)</strong></a></li>
+<li><a href="#frida-ios-dump-i0s"><strong>Frida-IOS-Dump (i0S)</strong></a></li>
+<li><a href="#grapefruit-i0s"><strong>GrapeFruit (i0S)</strong></a></li>
+<li><a href="#objection-android-and-i0s"><strong>Objection (Android and i0S)</strong></a></li>
+<li><a href="#tools-on-idevice"><strong>Tools on iDevice</strong></a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="assumption"><strong>Assumption</strong></h2>
+<hr>
+<ul>
+<li>As of now, I hope you have a laptop with <strong>&quot;Ubuntu Server&quot;</strong> installed on VM and customized as per the previous steps</li>
+<li>Also, you have a <strong>&quot;Rooted Android Emulator&quot;</strong></li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong>: We will be installing most of our tools in <code>~/.local</code> folder. By default, <code>frida</code> uses this folder to install <code>frida-tools</code>.</p>
+</blockquote>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="tools-installation"><strong>Tools Installation</strong></h2>
+<hr>
+<ul>
+<li>Before starting create a new folder : <code>mkdir $HOME/.local/tools</code></li>
+<li>Here we will install all tools and then create a softlink in <code>$HOME/.local/bin</code></li>
+</ul>
+<h3 id="apktool-android"><strong>APKTOOL (Android)</strong></h3>
+<ul>
+<li>
+<p>Tool for unpacking APK</p>
+</li>
+<li>
+<p>Download the latest <code>jar</code> file from : <a href="https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.5.0.jar"><strong>APKTOOL.JAR</strong></a></p>
+</li>
+<li>
+<p>Reference : <a href="https://ibotpeaches.github.io/Apktool/"><strong>APKTOOL</strong></a></p>
+</li>
+<li>
+<p>Create a new folder : <code>mkdir -p ~/.local/tools/apktool</code> and save the <code>jar</code> in this folder</p>
+</li>
+<li>
+<p>Rename the downloaded <code>jar</code> as <code>apktool.jar</code></p>
+</li>
+<li>
+<p>Create a new file called <code>apktool</code> and add lines</p>
+<pre class="hljs"><code><div>#! /bin/bash
+
+java -jar ~/.local/tools/apktool/apktool.jar $@
+</div></code></pre>
+</li>
+<li>
+<p>To create softlink : <code>ln -s $PWD/apktool ~/.local/bin/apktool</code></p>
+</li>
+<li>
+<p>Also run : <code>chmod +x $PWD/apktool</code> to make it executable</p>
+</li>
+<li>
+<p>Now you can run the command <code>apktool</code> from anywhere</p>
+<p><img src="screenshots/apktool.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="adb-android"><strong>ADB (Android)</strong></h3>
+<ul>
+<li>
+<p>Tool to communicate with emulator and real android device for debugging and testing purposes</p>
+</li>
+<li>
+<p>Download the latest zip file from : <a href="https://developer.android.com/studio/releases/platform-tools"><strong>PLATFORM-TOOLS</strong></a> and create a new folder <code>mkdir -p ~/.local/tools/android-platform-tools</code> and save the downloaded <code>zip</code> in this</p>
+</li>
+<li>
+<p>Extract the <code>zip</code> in the same folder and delete the <code>zip</code>. Run : <code>mv platform-tools/* .</code> and then remove <code>rmdir platform-tools</code></p>
+</li>
+<li>
+<p>To create softlink : <code>ln -s $PWD/adb ~/.local/bin/adb</code></p>
+</li>
+<li>
+<p>Now you can run the command <code>adb</code> from anywhere</p>
+<p><img src="screenshots/adb.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="jadx-android"><strong>JADX (Android)</strong></h3>
+<ul>
+<li>
+<p>Tool to unpack APK and convert the <code>dex</code> created in equivalent <code>java</code> class file</p>
+</li>
+<li>
+<p>Download the latest zip file from : <a href="https://github.com/skylot/jadx/releases"><strong>JADX</strong></a> and create a new folder <code>mkdir -p ~/.local/tools/jadx</code> and save the downloaded <code>zip</code> in this</p>
+</li>
+<li>
+<p>Extract the <code>zip</code> in the same folder and delete the <code>zip</code></p>
+</li>
+<li>
+<p><code>cd ~/.local/tools/jadx/bin</code> and create softlink : <code>ln -s $PWD/jadx-gui ~/.local/bin/jadx-gui</code></p>
+</li>
+<li>
+<p>Now you can run <code>jadx-gui</code> from anywhere</p>
+<p><img src="screenshots/jadx.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="bytecode-viewer-android"><strong>ByteCode-Viewer (Android)</strong></h3>
+<ul>
+<li>
+<p>Advanced Lightweight Java Bytecode Viewer for Android</p>
+</li>
+<li>
+<p>Download the latest <code>jar</code> file from : <a href="https://github.com/Konloch/bytecode-viewer/releases"><strong>ByteCode-Viewer</strong></a></p>
+</li>
+<li>
+<p>Create a new folder : <code>mkdir -p ~/.local/tools/bytecode-viewer</code> and save the <code>jar</code> in this folder</p>
+</li>
+<li>
+<p>Rename the downloaded <code>jar</code> as <code>bytecode-viewer.jar</code></p>
+</li>
+<li>
+<p>Create a new file called <code>bytecode-viewer</code> and add lines</p>
+<pre class="hljs"><code><div>#! /bin/bash
+
+java -jar ~/.local/tools/bytecode-viewer/bytecode-viewer.jar $@
+</div></code></pre>
+</li>
+<li>
+<p>To create softlink : <code>ln -s $PWD/bytecode-viewer ~/.local/bin/bytecode-viewer</code></p>
+</li>
+<li>
+<p>Also run : <code>chmod +x $PWD/bytecode-viewer</code> to make it executable</p>
+</li>
+<li>
+<p>Now you can run the command <code>bytecode-viewer</code> from anywhere</p>
+<p><img src="screenshots/bytecode-viewer.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="drozer-android"><strong>Drozer (Android)</strong></h3>
+<ul>
+<li>
+<p>Before installing <code>drozer</code>, we need to install some pre-requisites</p>
+<pre class="hljs"><code><div>sudo apt install python2 -y
+</div></code></pre>
+</li>
+<li>
+<p>After this install <code>python2-pip</code> as : <code>wget https://bootstrap.pypa.io/2.7/get-pip.py &amp;&amp; python2 get-pip.py</code></p>
+</li>
+<li>
+<p>Then install : <code>pip2 install protobuf pyopenssl twisted</code></p>
+</li>
+<li>
+<p>You can see the list of pre-requisites from : <a href="https://github.com/FSecureLABS/drozer"><strong>Drozer</strong></a></p>
+</li>
+<li>
+<p>Once done, download the latest <code>tar.gz</code> file from : <a href="https://github.com/FSecureLABS/drozer/releases"><strong>Drozer Releases</strong></a> and extract in the folder <code>mkdir -p ~/.local/tools/drozer</code></p>
+</li>
+<li>
+<p>Also download <code>agent apk</code> from <a href="https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk"><strong>Drozer Agent</strong></a> in the same folder</p>
+</li>
+<li>
+<p>Extract the tar file as : <code>tar -xvf drozer-2.4.4.tar.gz</code> and <code>rm drozer-2.4.4.tar.gz</code></p>
+</li>
+<li>
+<p><code>cd ~/.local/tools/drozer/drozer-2.4.4/bin</code> and run <code>mv drozer drozertool</code></p>
+</li>
+<li>
+<p>Create a new file in the same folder called <code>drozer</code> and edit it</p>
+<pre class="hljs"><code><div>#! /bin/bash
+
+python2 ~/.local/tools/drozer/drozer-2.4.4/bin/drozertool $@
+</div></code></pre>
+</li>
+<li>
+<p>Create softlink : <code>ln -s $PWD/drozer ~/.local/bin/drozer</code></p>
+</li>
+<li>
+<p>Also run : <code>chmod +x $PWD/drozer</code> to make it executable</p>
+</li>
+<li>
+<p>Now you can run <code>drozer</code> from anywhere</p>
+<p><img src="screenshots/drozer.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="hopper-android-and-i0s"><strong>Hopper (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>Hopper is a disassembler and debugger that runs on Mac OS X or Linux, but not Windows. It has similar functionality to IDA Pro but costs 10x less. And the free version works on 64-bit executables.</p>
+</li>
+<li>
+<p>Pre-Requisites</p>
+<pre class="hljs"><code><div>sudo apt update
+
+sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5core5a libqt5dbus5 libxcb-xinerama0 qtbase5-dev libqt5svg5 qt5-gtk-platformtheme libqt5dbus5 libqt5widgets5 libdouble-conversion3 qttranslations5-l10n libpython2.7 -y
+</div></code></pre>
+</li>
+<li>
+<p>Get the <code>tar.xz</code> file from <a href="https://www.hopperapp.com/download.html?"><strong>Hopper</strong></a></p>
+<blockquote>
+<p><strong>Note</strong> : Not sure why deb has issues while installing it on Ubuntu and it broke my apt too. So best option is to use tar.xz file, extract and run the executable</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong> : If the apt is broken then, you can run commands : <code>rm -rf /var/lib/dpkg/info/hopper-*</code> and <code>rm -rf /var/lib/apt/lists/*</code> and re-run <code>apt-update</code></p>
+</blockquote>
+</li>
+<li>
+<p>Create a new folder <code>mkdir -p ~/.local/tools/hopper</code> and save the downloaded file in this folder</p>
+</li>
+<li>
+<p>Extract the downloaded file and follow the path in screenshot to get to hopper</p>
+<p><img src="screenshots/hopper.png" alt=""></p>
+</li>
+<li>
+<p>Create a softlink to access it from anywhere : <code>ln -s $PWD/Hopper ~/.local/bin/hopper</code></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="burpzap-traffic-inspection"><strong>Burp/ZAP (Traffic Inspection)</strong></h3>
+<ul>
+<li>Download the latest version from their Website
+<ul>
+<li><a href="https://portswigger.net/burp/communitydownload">Burpsuite Community Edition</a></li>
+<li><a href="https://www.zaproxy.org/download/">OWASP ZAP</a></li>
+</ul>
+</li>
+<li>From recommandation perspective, best is to install these two on host machine where you have installed <code>Android Studio</code></li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="frida-and-frida-tools-android-and-i0s"><strong>Frida and Frida-Tools (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>Simple Installation</p>
+<pre class="hljs"><code><div>pip3 install -U frida frida-tools
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="frida-android-tracer-android"><strong>Frida Android Tracer (Android)</strong></h3>
+<ul>
+<li>
+<p>Generates Javascript hook scripts to hook Android classes</p>
+</li>
+<li>
+<p>Git clone the repo : <code>git clone https://github.com/Piasy/FridaAndroidTracer.git</code> in <code>~/.local/tools</code></p>
+</li>
+<li>
+<p>To create softlink</p>
+<p><img src="screenshots/fat.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="android-backup-extractor-android"><strong>Android Backup Extractor (Android)</strong></h3>
+<ul>
+<li>
+<p>Utility to extract and repack Android backups created with <code>adb backup</code></p>
+</li>
+<li>
+<p>Folder : <code>mkdir -p ~/.local/tools/abe</code> and download the latest <code>zip</code> file from <a href="https://github.com/nelenkov/android-backup-extractor/releases"><strong>ABE</strong></a> and delete the <code>zip</code></p>
+</li>
+<li>
+<p>Steps</p>
+<p><img src="screenshots/abe1.png" alt=""></p>
+<p><img src="screenshots/abe2.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="pidcat-android"><strong>PIDCAT (Android)</strong></h3>
+<ul>
+<li>
+<p>Enable colorful <code>adb logcat</code></p>
+</li>
+<li>
+<p>Steps : Either you can do <code>sudo apt install -y pidcat</code> and restart the shell</p>
+<p>OR</p>
+<p><img src="screenshots/pidcat.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="mobsf-android-and-i0s"><strong>MobSF (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>Mobile Application Testing framework which can perform DAST and SAST both for Mobile Applications</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div>sudo apt install python3.8 python3-pip python3-venv wkhtmlpdf -y
+
+<span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools
+git <span class="hljs-built_in">clone</span> https://github.com/MobSF/Mobile-Security-Framework-MobSF.git
+mv Mobile-Security-Framework-MobSF MobSF
+<span class="hljs-built_in">cd</span> MobSF
+python3 -m pip install -r requirements.txt
+./setup.sh
+
+<span class="hljs-comment"># Once Installed, Replace IP:PORT with values</span>
+./run.sh IP:PORT &gt; /dev/null 2&gt;&amp;1 &amp;
+</div></code></pre>
+</li>
+<li>
+<p>Create softlink: Add your VM Guest IP and random PORT number so that you can access it from host machine's browser</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools/MobSF
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">""</span><span class="hljs-string">"#! /bin/bash
+~/.local/tools/MobSF/run.sh IP:PORT &gt; /dev/null 2&gt;&amp;1 &amp;
+"</span><span class="hljs-string">""</span> &gt; mobSF
+
+chmod +x mobSF
+
+ln -s <span class="hljs-variable">$PWD</span>/mobSF ~/.<span class="hljs-built_in">local</span>/bin/mobsf
+</div></code></pre>
+</li>
+<li>
+<p>Now you can run <code>mobsf</code> from anywhere. Hit <code>mobsf</code> and open browser and type the IP:PORT you set</p>
+</li>
+<li>
+<p>You can download it's <code>docker</code> image as well</p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="androbugs-framework-android"><strong>AndroBugs Framework (Android)</strong></h3>
+<ul>
+<li>
+<p>This will be used to generate the POC <code>.apk</code></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools
+git <span class="hljs-built_in">clone</span> https://github.com/AndroBugs/AndroBugs_Framework.git
+mv AndroBugs_Framework AndroBugs
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">""</span><span class="hljs-string">"#! /bin/bash
+python2 ~/.local/tools/AndroBugs/androbugs.py <span class="hljs-variable">$@</span>
+"</span><span class="hljs-string">""</span> &gt; androbugs
+
+chmod +x androbugs
+
+ln -s <span class="hljs-variable">$PWD</span>/androbugs ~/.<span class="hljs-built_in">local</span>/bin/androbugs
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="qark-framework-android"><strong>QARK Framework (Android)</strong></h3>
+<ul>
+<li>
+<p>Check several security related Android application vulnerabilities, either in source code or packaged APKs</p>
+</li>
+<li>
+<p>This tool is also capable of creating &quot;Proof-of-Concept&quot; deployable APKs</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div>pip3 install --user qark
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="rms-dexcalibur-and-passionfruit-android-and-i0s"><strong>RMS, Dexcalibur and Passionfruit (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>These three tools needs to be installed in combination for convinence because they use <code>npm</code> for installation</p>
+</li>
+<li>
+<p><code>npm</code> versions are different for these so will use <code>nvm</code> so as to manage multiple <code>npm</code> versions on our device</p>
+</li>
+<li>
+<p>Pre-requisites</p>
+<pre class="hljs"><code><div>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
+
+<span class="hljs-comment"># RESTART THE TERMINAL </span>
+
+nvm install 10.23.0
+nvm install 12.20.0
+</div></code></pre>
+<blockquote>
+<p><strong>RMS Installation</strong></p>
+</blockquote>
+<pre class="hljs"><code><div>nvm use 10.23.0
+node -v &amp;&amp; npm -v <span class="hljs-comment"># Output : v10.23.0 and 6.14.8</span>
+
+<span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools/
+git <span class="hljs-built_in">clone</span> https://github.com/m0bilesecurity/RMS-Runtime-Mobile-Security.git
+mv RMS-Runtime-Mobile-Security RMS
+<span class="hljs-built_in">cd</span> RMS
+npm install -g
+
+nano rms.js <span class="hljs-comment"># Search for `127.0.0.1` and replace it with `0.0.0.0`</span>
+
+<span class="hljs-comment"># To run</span>
+rms
+</div></code></pre>
+<blockquote>
+<p>PassionFruit Installation</p>
+</blockquote>
+<pre class="hljs"><code><div>sudo pip3 install -U pip frida frida-tools
+sudo pip3 install -U asn1crypto bcrypt cffi colorama cryptography enum34 idna ipaddress paramiko prompt-toolkit pyasn1 pycparser Pygments PyNaCl scp six tqdm wcwidth
+
+sudo chown -R <span class="hljs-variable">$USER</span>:<span class="hljs-variable">$USER</span> <span class="hljs-variable">$HOME</span>
+npm install -g passionfruit --no-optional --unsafe-perm -f
+
+<span class="hljs-comment"># To run</span>
+HOST=<span class="hljs-string">"&lt;YOUR_VM_IP&gt;"</span> PORT=<span class="hljs-string">"&lt;ANY_PORT&gt;"</span> passionfruit
+</div></code></pre>
+<blockquote>
+<p>Dexcalibur Installation</p>
+</blockquote>
+<pre class="hljs"><code><div>nvm use 12.20.0
+node -v &amp;&amp; npm -v <span class="hljs-comment"># Output : v12.20.0 and 6.14.8</span>
+
+mkdir -p ~/.<span class="hljs-built_in">local</span>/tools/dexcalibur
+<span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools/dexcalibur
+sudo ln -s /usr/bin/python3 /usr/bin/python
+
+npm install dexcalibur
+<span class="hljs-built_in">cd</span> node_modules/dexcalibur
+
+<span class="hljs-comment"># To run</span>
+node dexcalibur.js
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="radare2-and-r2frida-android-and-i0s"><strong>Radare2 and R2Frida (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>One of the best reverse engineering tool you can ever encounter and to add on it's free</p>
+</li>
+<li>
+<p>You need to get inside the cloned git folder and do all the installations for <code>r2frida</code> using <code>r2pm</code></p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Getting r2</span>
+<span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools/
+git <span class="hljs-built_in">clone</span> --recursive https://github.com/radareorg/radare2.git
+<span class="hljs-built_in">cd</span> radare2
+sys/install.sh
+
+<span class="hljs-comment"># Getting r2frida - All these should be typed inside the radare2 folder cloned from github</span>
+r2pm init
+r2pm update
+
+r2pm -ci r2frida
+
+r2pm -l <span class="hljs-comment"># Listing what all is installed by package manager</span>
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="mara-framework-android"><strong>MARA Framework (Android)</strong></h3>
+<ul>
+<li>
+<p>MARA stands for <code>Mobile Application Reverse engineering and Analysis Framework</code></p>
+</li>
+<li>
+<p>It is a tool that puts together commonly used mobile application reverse engineering and analysis tools, to assist in testing mobile applications against the OWASP mobile security threats</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools
+git <span class="hljs-built_in">clone</span> --recursive https://github.com/xtiankisutsa/MARA_Framework.git
+<span class="hljs-built_in">cd</span> MARA-Framework
+./setup.sh
+
+<span class="hljs-comment"># To start MARA</span>
+./mara.sh
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="apkid-android"><strong>APKiD (Android)</strong></h3>
+<ul>
+<li>
+<p>APKiD gives you information about how an APK was made</p>
+</li>
+<li>
+<p>It identifies many compilers, packers, obfuscators, and other weird stuff</p>
+</li>
+<li>
+<p>It's PEiD for Android</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div>pip install --upgrade wheel
+pip wheel --wheel-dir=/tmp/yara-python --build-option=<span class="hljs-string">"build"</span> --build-option=<span class="hljs-string">"--enable-dex"</span> git+https://github.com/VirusTotal/yara-python.git@v3.11.0
+pip install --no-index --find-links=/tmp/yara-python yara-python
+
+pip install apkid
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="simplify-android"><strong>Simplify (Android)</strong></h3>
+<ul>
+<li>Deobfuscate the Java Code</li>
+<li>Download the latest release from : <a href="https://github.com/CalebFenton/simplify/releases">Simplify</a></li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="iproxy-and-ideviceinstaller-i0s"><strong>iProxy and iDeviceInstaller (i0S)</strong></h3>
+<ul>
+<li>
+<p>This will help us in forwarding <code>SSH</code> traffic via USB</p>
+</li>
+<li>
+<p>Pre-requisites:</p>
+<ul>
+<li>Either you can install <code>homebrew</code> or you can install the tools below</li>
+</ul>
+<pre class="hljs"><code><div>sudo apt install -y usbutils libusbmuxd-tools ideviceinstaller libimobiledevice6 libimobiledevice-utils
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="frida-ios-dump-i0s"><strong>Frida-IOS-Dump (i0S)</strong></h3>
+<ul>
+<li>
+<p>Extracts unencrypted <code>IPA</code> file from i0S device</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools
+git <span class="hljs-built_in">clone</span> https://github.com/AloneMonkey/frida-ios-dump.git
+<span class="hljs-built_in">cd</span> frida-ios-dump
+sudo -H pip3 install -r requirements.txt --upgrade
+
+<span class="hljs-comment"># Once installed</span>
+iproxy 2222 22
+
+./dump.py &lt;Display Name&gt; or &lt;Bundle identifier&gt;
+</div></code></pre>
+</li>
+<li>
+<p>To check whether the IPA is encrypted or not. On mobile terminal:</p>
+<ul>
+<li>
+<p>SCP the extracted IPA to mobile</p>
+</li>
+<li>
+<p>Rename it to ZIP with Filza</p>
+</li>
+<li>
+<p>Extract and get inside the app folder and run the below command</p>
+<p><code>otool -arch all -Vl &quot;HDFC Bank&quot; | grep -A5 LC_ENCRYPT</code></p>
+</li>
+<li>
+<p>If &quot;cryptid=0&quot; means not encrypted else encrypted</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="grapefruit-i0s"><strong>GrapeFruit (i0S)</strong></h3>
+<ul>
+<li>
+<p>Runtime Application Instrumentation for iOS</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Because we have multiple versions of NPM installed</span>
+nvm use 12.20.0
+
+<span class="hljs-built_in">cd</span> ~/.<span class="hljs-built_in">local</span>/tools/
+git <span class="hljs-built_in">clone</span> --recurse-submodules https://github.com/ChiChou/Grapefruit
+<span class="hljs-built_in">cd</span> GrapeFruit
+npm run installdev
+
+<span class="hljs-comment"># Run it as</span>
+npm run dev
+
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="objection-android-and-i0s"><strong>Objection (Android and i0S)</strong></h3>
+<ul>
+<li>
+<p>Awesome tool for dynamic analysis</p>
+</li>
+<li>
+<p>Runs over Frida, so frida is a pre-requisite</p>
+</li>
+<li>
+<p>You can also re-package your <code>apk</code> or <code>ipa</code> to get MiTM</p>
+</li>
+<li>
+<p>Steps</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># If Frida and Frida-tools are installed from above</span>
+python3 -m pip install -U objection
+</div></code></pre>
+</li>
+<li>
+<p>Connecting iDevice</p>
+<ul>
+<li>
+<p>If you are connecting via USB</p>
+<p><code>objection -g RUNNING_APP_NAME explore</code></p>
+</li>
+<li>
+<p>If you are connecting via SSH</p>
+<p><code>objection -N -h ipad -p 9000 -g RUNNING_APP_NAME explore</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>It generally gets installed on path <code>$HOME/.local/bin</code></p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="tools-on-idevice"><strong>Tools on iDevice</strong></h3>
+<ul>
+<li>
+<p>Install repositories: <code>BigBoss</code> and <code>build.frida.re</code></p>
+</li>
+<li>
+<p>Tools:</p>
+<ul>
+<li>From Cydia:
+<ul>
+<li>Darwin CC Tools</li>
+<li>IPA Installer Console</li>
+<li>Frida</li>
+<li>Socket CAT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>From CMD:</p>
+<pre class="hljs"><code><div>apt-get update
+apt-get upgrade -y
+apt-get install adv-cmds
+apt-get install sqlite3
+</div></code></pre>
+</li>
+</ul>
+<blockquote>
+<p>Also in place of class-dump and class-dump-z, preferred method is dsdump, else you need to thin the FAT file using lipo, which is in-build in iOS</p>
+</blockquote>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+
+</body>
+</html>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CustomTerminal.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 22px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+	background-color: #1b1b1c;
+	color: #FFF;
+	max-width: 1500px;
+	margin: auto;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color:  burlywood;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	color: #34aced;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: "Courier New", Menlo, Monaco, Consolas, "Droid Sans Mono", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: "Courier New", sans-serif, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<img src="screenshots/Front1.png">
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1><b>Terminal Customizations<b></h1>
+<blockquote>
+<p><strong>Owner</strong> : 🧛🏻‍♂️ - Mr. Sup3rN0va | 09-February-2021</p>
+</blockquote>
+<blockquote>
+<p><strong>Tags</strong> : #i0S (📲), #android (📱), #pentesting (👨🏼‍💻), #tools (⚒), #cheatsheet (📜)</p>
+</blockquote>
+<hr>
+<h2><b>Table Of Contents</b></h2>
+<ul>
+<li><a href="#assumptions"><strong>Assumptions</strong></a></li>
+<li><a href="#terminal-customizations"><strong>Terminal Customizations</strong></a>
+<ul>
+<li><a href="#initial-setup"><strong>Initial Setup</strong></a></li>
+<li><a href="#creating-shell-profile"><strong>Creating Shell Profile</strong></a></li>
+<li><a href="#installing-shell-theme"><strong>Installing Shell Theme</strong></a></li>
+</ul>
+</li>
+<li><a href="#theming-tmux"><strong>Theming TMUX</strong></a></li>
+<li><a href="#final-touch"><strong>Final Touch</strong></a></li>
+</ul>
+<hr>
+<h2 id="assumptions"><strong>Assumptions</strong></h2>
+<hr>
+<ul>
+<li>By this time, I assume you have a fresh Ubuntu installed on your VM</li>
+<li>Also, you must be having a rooted Android Emulator</li>
+<li>My recommendation will be to use <code>Ubuntu Server 20.04</code> as there is no GUI and then we can do <code>SSH</code> to do pentesting</li>
+<li>Also, if you are using <code>Ubuntu Server 20.04</code>, you will have option to install <code>openssh-server</code> at the time of OS installation</li>
+<li>This makes us to take <code>SSH</code> directly after installing <code>Ubuntu</code> and then, we can copy-paste the commands 🤩🥳👍</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="terminal-customizations"><strong>Terminal Customizations</strong></h2>
+<hr>
+<h3 id="initial-setup"><strong>Initial Setup</strong></h3>
+<ul>
+<li>
+<p><strong>Windows</strong></p>
+<ul>
+<li>Terminal of my choice : <code>Terminus</code></li>
+<li>You can download this from GitHub : <a href="https://github.com/Eugeny/terminus/releases"><strong>Eugeny/Terminus</strong></a></li>
+<li>With this you need to have some additional applications which will support <code>Terminus</code> to achieve it's full potential but <strong>these are only required if you are using <code>Windows</code></strong>
+<ul>
+<li><strong>VcXSrv - XWindow Server</strong>
+<ul>
+<li>You can download it from : <a href="https://sourceforge.net/projects/portable-x-server/files/"><strong>SourceForge - Portable</strong></a> or you can have an installer : <a href="https://sourceforge.net/projects/vcxsrv/files/vcxsrv/"><strong>SourceForge - Installer</strong></a></li>
+</ul>
+</li>
+<li><strong>WinSCP</strong> : Download portable version so as to invoke <code>scp</code> from terminus to transfer data
+<ul>
+<li>You can download it's portable version from :  <a href="https://winscp.net/eng/downloads.php"><strong>Official WebPage - WinSCP</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Features</strong>
+<ul>
+<li><strong>SSH</strong></li>
+<li><strong>Injecting Environment Variables</strong></li>
+<li><strong>Port Forwarding - Local, Remote and Dynamic</strong></li>
+<li><strong>Inline SCP using WinSCP</strong></li>
+<li><strong>XWindow Server support with VcxSrv</strong></li>
+<li><strong>Themes and Customizations</strong></li>
+<li><strong>Most Importantly - &quot;IT'S FREE&quot;</strong> 🥳🥳🥳👍</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Linux</strong></p>
+<ul>
+<li>Terminal of my choice : <code>Alacritty</code> or <code>Konsole</code> or <code>Gnome</code></li>
+<li>You can choose any of the above, I generally use <code>Konsole</code> on KDE and <code>Gnome</code> on GNOME</li>
+<li>Because linux by-default supports <code>X11</code> and <code>SCP</code>, so on that part we are covered</li>
+<li>We need to add some scripts to attain functionality like <code>Terminus</code> above</li>
+<li>Check out my GitHub reference : <a href="https://m2sup3rn0va.github.io/LazySSH/"><strong>Lazy SSH</strong></a> for features like
+<ul>
+<li><strong>Easy SSH</strong></li>
+<li><strong>Easy Port Forwarding</strong></li>
+<li><strong>Interactive SCP like WinSCP using SSHFS</strong></li>
+</ul>
+</li>
+<li>For themes, we can do similar customizations what we are going to do for <code>VM</code> like <code>oh-my-zsh</code> and <code>tmux</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="creating-shell-profile"><strong>Creating Shell Profile</strong></h3>
+<ul>
+<li>
+<p>Now on freshly installed VM  (Ubuntu, I presume), we need to customize the shell</p>
+</li>
+<li>
+<p>Before that will install some necessary kits</p>
+<ul>
+<li><strong>&quot;Shell Profile&quot;</strong>
+<ul>
+<li>
+<p>Create a file called <strong>&quot;.zsh_profile&quot;</strong> and add these enteries to it</p>
+<pre class="hljs"><code><div># =================================================================
+# Aliases
+# =================================================================
+
+alias ll='ls -alh --color=always'
+alias cls='tput clear reset'
+
+# =================================================================
+# Custom Functions
+# =================================================================
+
+apt-update()
+{
+    sudo apt clean -y;
+    sudo apt autoclean -y;
+    sudo apt remove -y;
+    sudo apt autoremove -y;
+    sudo apt update;
+    sudo apt upgrade -y;
+    sudo apt dist-upgrade -y;
+    sudo apt install build-essential linux-headers-`uname -r` -y
+}
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Once this is being created run : <code>source ~/.zsh_profile</code></p>
+</li>
+<li>
+<p>Now update your installation by typing : <code>apt-update</code></p>
+</li>
+<li>
+<p>Now let's install some important packages</p>
+<pre class="hljs"><code><div>sudo apt install -y net-tools iputils-ping wget curl python3-pip python3-venv screenfetch zsh tmux git gdebi openssh-server openjdk-14-jdk openjdk-14-jre aapt zipalign unzip bat
+</div></code></pre>
+</li>
+<li>
+<p>Recently I had some issues installing <code>openjdk</code> packages on <code>Ubuntu Server 20.04</code>, not sure why but there were several mismatch hashes.</p>
+</li>
+<li>
+<p>To get through, I had to install java from <code>linuxuprising</code>. Use this only if you are not able to install <code>openjdk-14-jdk</code> and <code>openjdk-14-jre</code> from above command</p>
+</li>
+<li>
+<p>To install Java on <code>Ubuntu Server 20.04</code></p>
+<pre class="hljs"><code><div>sudo add-apt-repository ppa:linuxuprising/java
+apt-update <span class="hljs-comment"># This will only work if you have set above .zsh_profile</span>
+sudo apt install oracle-java15-installer
+
+java --version <span class="hljs-comment"># Once Java is installed</span>
+</div></code></pre>
+</li>
+<li>
+<p>This will install all the required pre-requisite packages</p>
+</li>
+<li>
+<p>If you are using <code>Ubuntu Server 20.04</code>, then this step is not needed because <code>SSH</code> is by-default enabled, but just in case if you are setting this up on any other VM Guest then, just enable <code>SSH</code> on VM by typing : <code>sudo systemctl start ssh</code> and you need to enable it at boot so : <code>sudo systemctl enable ssh</code></p>
+</li>
+<li>
+<p>You can check <code>SSH</code> status as : <code>sudo systemctl status ssh</code></p>
+<p><img src="screenshots/SSH.png" alt="Text"></p>
+</li>
+</ul>
+<h3 id="installing-shell-theme"><strong>Installing Shell Theme</strong></h3>
+<ul>
+<li>
+<p><strong>oh-my-zsh</strong> 😍🥰</p>
+<ul>
+<li>
+<p>Installation is pretty simple</p>
+<pre class="hljs"><code><div>$ sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span>
+</div></code></pre>
+<p>OR</p>
+<pre class="hljs"><code><div>sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span>
+</div></code></pre>
+<ul>
+<li>This will install <strong>&quot;ZSH-THEME&quot;</strong> and set your current shell to <strong>&quot;ZSH&quot;</strong></li>
+<li>My personal favourite themes are</li>
+</ul>
+<pre class="hljs"><code><div>ZSH_THEME_RANDOM_CANDIDATES=( &quot;xiong-chiamiov&quot; &quot;mortalscumbag&quot; &quot;dst&quot; &quot;trapd00r&quot; &quot;funky&quot; &quot;clean&quot; &quot;fino-time&quot; &quot;bureau&quot; &quot;dpoggi&quot; &quot;mikeh&quot; &quot;geoffgarside&quot; &quot;crcandy&quot; &quot;simonoff&quot; &quot;rkj-repos&quot; &quot;agnoster&quot; &quot;darkblood&quot; &quot;frisk&quot; &quot;nicoulaj&quot; &quot;duellj&quot; &quot;rkj&quot; )
+</div></code></pre>
+<ul>
+<li>Just open <code>~/.zshrc</code> and search for <code>ZSH_THEME_RANDOM_CANDIDATES</code> and replace that line with above line. Also, <code>ZSH_THEME</code> is set to <code>robbyrussell</code> by default, change that to <code>random</code> and you will have a new shell everytime you hit the <code>.zshrc</code> file</li>
+</ul>
+<blockquote>
+<p><strong>REFERENCE</strong> : <a href="https://github.com/ohmyzsh/ohmyzsh/wiki"><strong>&quot;Oh-My-ZSH&quot;</strong></a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>zsh-autosuggestions</strong> 😍🥰</p>
+<ul>
+<li>
+<p>Installation is simple. Once you have 'oh-my-zsh' installed, do</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions
+</div></code></pre>
+</li>
+<li>
+<p>Open <code>~/.zshrc</code> file and find plugins and add as <code>plugins=(zsh-autosuggestions)</code></p>
+</li>
+<li>
+<p>If you have any other plugins installed like I had <code>git</code>, then the final will look like : <code>plugins=(git zsh-autosuggestions)</code></p>
+<blockquote>
+<p><strong>REFERENCE</strong> : <a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md"><strong>&quot;zsh-autosuggestions&quot;</strong></a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>zsh-syntax-highlightning</strong> 😍🥰</p>
+<ul>
+<li>
+<p>Installation is simple. Once you have 'oh-my-zsh' installed, do</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting
+</div></code></pre>
+</li>
+<li>
+<p>Open <code>~/.zshrc</code> file and find plugins and add as <code>plugins=(zsh-syntax-highlighting)</code></p>
+</li>
+<li>
+<p>If you have any other plugins installed like I had <code>git</code>, then the final will look like : <code>plugins=(git zsh-autosuggestions zsh-syntax-highlighting)</code></p>
+<blockquote>
+<p><strong>REFERENCE</strong> : <a href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md"><strong>&quot;zsh-syntax-highlightings&quot;</strong></a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Installing Rust based programs for awesome output</strong></p>
+<ul>
+<li>
+<p>Steps:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Installing program alternate to ls</span>
+<span class="hljs-comment"># Download EXA from : https://github.com/ogham/exa/releases</span>
+unzip exa-linux-x86_64-0.8.0.zip
+mkdir ~/.<span class="hljs-built_in">local</span>/bin
+mv exa-linux-x86_64 ~/.<span class="hljs-built_in">local</span>/bin/exa
+sudo ln -s ~/.<span class="hljs-built_in">local</span>/bin/exa /usr/bin/exa
+
+<span class="hljs-comment"># Installing program alternate to cat</span>
+<span class="hljs-comment"># Docs : https://github.com/sharkdp/bat</span>
+sudo apt install bat -y
+
+<span class="hljs-comment"># Installing program alternate to ps</span>
+<span class="hljs-comment"># Docs : https://github.com/dalance/procs</span>
+sudo snap install procs
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="theming-tmux"><strong>Theming TMUX</strong></h2>
+<hr>
+<ul>
+<li>
+<p><code>TMUX</code> is a terminal multiplexer which enhances your productivity by splitting up the terminal pane and even provide tabs from a single <code>SSH</code> session so that you don't have to create or do <code>SSH</code> if you wanted to test on one window and get the output on other</p>
+</li>
+<li>
+<p>As from above pre-requisite installation <code>tmux</code> is already installed and you can run it directly by typing <code>tmux</code> on terminal but we need to customize it to look good, so let's theme it 😻😻</p>
+</li>
+<li>
+<p>First create a new folder as : <code>~/.tmux</code></p>
+</li>
+<li>
+<p><code>cd ~/.tmux</code> and download tmux themes and plugins</p>
+<ul>
+<li>
+<p><strong>&quot;Nord Theme&quot;</strong></p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/arcticicestudio/nord-tmux.git
+</div></code></pre>
+</li>
+<li>
+<p><strong>&quot;TMUX-Power Theme&quot;</strong></p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/wfxr/tmux-power.git
+</div></code></pre>
+</li>
+<li>
+<p><strong>&quot;Tmux-Net-Speed&quot;</strong></p>
+<ul>
+<li>
+<p>It's a plugin for <strong>&quot;TMUX-Power Theme&quot;</strong> which shows the upload and download speed</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/tmux-plugins/tmux-net-speed.git
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>All these should be in <code>~/.tmux</code> folder</p>
+</li>
+<li>
+<p>Create a new file called <code>tmux.conf</code> and add these</p>
+<pre class="hljs"><code><div>-&gt; % cat .tmux/tmux.conf
+# ============================================================================
+# Prefix = &lt;Cntrl+c&gt;
+#
+# Command Mode : Prefix + :
+# ------ Rename Current Window : :rename-window __name__
+# OR
+# ------ Rename : Prefix + ,
+#
+# Copy Mode : Prefix + [
+# ------ Quit : q and rest all commands are like vim
+# ------ Start Selection : Spacebar
+# ------ Clear Selection : Esc
+# ------ Copy Selection : Enter
+# ------ Paste Selection : Prefix + ]
+# ------ Search Forward and Backward : / and ?
+# ------ Next Occurance Forward/Backward : n/N
+#
+# Panes :
+# ------ Split Screen : Horizontal : (Prefix h) and Vertical : (Prefix v)
+# ------ Move between Split Panes : Prefix Up, Down, Left, Right
+# ------ Swap Split Panes : Prefix Shift+{, Shift+}
+# ------ Zoom : Prefix + z
+# ------ Resize Split Panes : Prefix + Cntrl(Hold) + Arrow_Keys
+#
+# Windows :
+# ------ Create New Window : Prefix n
+# ------ Move between windows : Shift+Left,Right
+# ------ Swap Windows : Control+Left,Right
+#
+# ============================================================================
+# TMUX - Configurations
+# ============================================================================
+
+# ============================================================================
+# Change prefix
+# ============================================================================
+
+unbind C-b
+set-option -g prefix C-c
+bind-key C-c send-prefix
+
+# ============================================================================
+# Don't allow tmux to rename windows
+# ============================================================================
+
+set-option -g allow-rename on
+
+# ============================================================================
+# Use 256 colors
+# ============================================================================
+
+set-option -g default-terminal &quot;screen-256color&quot;
+set-option -ga terminal-overrides &quot;,xterm-256color:Tc&quot;
+
+# ============================================================================
+# Use vi keys for copy mode
+# ============================================================================
+
+set-option -g mode-keys vi
+
+# ============================================================================
+# Enable status bar
+# ============================================================================
+
+set-option -g status on
+
+# ============================================================================
+# Window configuration
+# ============================================================================
+
+# Create New Window
+
+bind-key n new-window
+
+# Switch between Windows
+
+bind -n S-Left previous-window
+bind -n S-Right next-window
+bind -n C-Left { swap-window -t -1; previous-window }
+bind -n C-Right { swap-window -t +1; next-window }
+
+# ============================================================================
+# Panes configuration
+# ============================================================================
+
+# Splitting to Panes
+bind-key v split-window -h
+bind-key h split-window -v
+
+# Activating Panes
+bind-key Left select-pane -L
+bind-key Right select-pane -R
+bind-key Up select-pane -U
+bind-key Down select-pane -D
+
+# ============================================================================
+# Mouse Mode (Optional)
+# ============================================================================
+
+setw -g mouse off
+
+# ============================================================================
+# Keybinding for reloading tmux config file
+# ============================================================================
+
+bind r source-file ~/.tmux/tmux.conf \; display &quot; Config File Reloaded!&quot;
+
+# ============================================================================
+# TMUX Themes
+# ============================================================================
+
+# Settings for TMUX-POWER Theme
+set -g @tmux_power_theme 'sky'
+set -g @tmux_power_date_icon '📆'
+set -g @tmux_power_time_icon '🕘'
+set -g @tmux_power_user_icon '😈'
+set -g @tmux_power_session_icon '🥇'
+set -g @tmux_power_upload_speed_icon '🚀'
+set -g @tmux_power_download_speed_icon '📥'
+set -g @tmux_power_left_arrow_icon '&lt;'
+set -g @tmux_power_right_arrow_icon '&gt;'
+set -g @tmux_power_show_upload_speed true
+set -g @tmux_power_show_download_speed true
+
+run-shell &quot;$HOME/.tmux/tmux-power/tmux-power.tmux&quot;
+run-shell &quot;$HOME/.tmux/tmux-net-speed/net-speed.tmux&quot;
+
+# Settings for Nord Theme
+#run-shell &quot;$HOME/.tmux/nord-tmux/nord.tmux&quot;
+
+</div></code></pre>
+</li>
+<li>
+<p>I have added <strong>&quot;help&quot;</strong> at the top of the config file</p>
+</li>
+<li>
+<p>I have 2 themes already added in the config file : <strong>&quot;Tmux-Power&quot;</strong> and <strong>&quot;Nord Theme&quot;</strong></p>
+</li>
+<li>
+<p>Depending on what you are using, comment the other one, like currently I am using <strong>&quot;Tmux-Power&quot;</strong> theme as per the config</p>
+</li>
+<li>
+<p>Also, the images are emoji which you can change as per your wish. Make sure that your terminal supports emoji - <strong>&quot;Terminus Does&quot;</strong> 🥳🥳🥳👍</p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="final-touch"><strong>Final Touch</strong></h2>
+<hr>
+<ul>
+<li>
+<p>Update the file : <code>.zsh_profile</code> previously created as</p>
+<pre class="hljs"><code><div>-&gt; % cat .zsh_profile
+
+# =================================================================
+# Startup Commands
+# =================================================================
+
+screenfetch
+export DISPLAY=&quot;x.x.x.x:0.0&quot;
+export PATH=&quot;$PATH:$HOME/.local/bin&quot;
+
+# =================================================================
+# Aliases
+# =================================================================
+
+alias ls='exa --color=always --color-scale -l'
+alias ll='exa --color=always --color-scale -al'
+alias cls='tput clear reset'
+alias tmux='tmux -f $HOME/.tmux/tmux.conf'
+alias cat='batcat'
+alias pslist='procs'
+
+# =================================================================
+# Custom Functions
+# =================================================================
+
+apt-update()
+{
+  sudo apt clean -y;
+  sudo apt autoclean -y;
+  sudo apt remove -y;
+  sudo apt autoremove -y;
+  sudo apt update;
+  sudo apt upgrade -y;
+  sudo apt dist-upgrade -y;
+  sudo apt install build-essential linux-headers-`uname -r` -y
+}
+
+</div></code></pre>
+</li>
+<li>
+<p>Replace the value of <code>x.x.x.x</code> from your IP Address, either <code>Ethernet</code> or <code>WiFi</code></p>
+</li>
+<li>
+<p>Then final step is to source this in <code>.zshrc</code> as : <code>echo 'source ~/.zsh_profile' &gt;&gt; .zshrc</code></p>
+</li>
+<li>
+<p>This will setup everything. Logout and login back and see the effects 😍🥰</p>
+</li>
+<li>
+<p>Type : <code>tmux</code> and check whether you have the theme enabled</p>
+</li>
+</ul>
+<blockquote>
+<p>Final Output</p>
+</blockquote>
+<p><img src="screenshots/final.png" alt=""></p>
+<blockquote>
+<p><a href="toolinstall.html"><strong>Next Page - Tools Installation</strong></a></p>
+</blockquote>
+
+</body>
+</html>

@@ -409,7 +409,8 @@ code {
 <li><a href="#frida-ios-dump-i0s"><strong>Frida-IOS-Dump (i0S)</strong></a></li>
 <li><a href="#grapefruit-i0s"><strong>GrapeFruit (i0S)</strong></a></li>
 <li><a href="#objection-android-and-i0s"><strong>Objection (Android and i0S)</strong></a></li>
-<li><a href="#tools-on-idevice"><strong>Tools on iDevice</strong></a></li>
+<li><a href="#tools-on-idevice"><strong>Tools on iDevice (i0S)</strong></a></li>
+<li><a href="#guiscrcpy-android-and-i0s"><strong>GuiScrcpy (Android and i0S)</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -433,7 +434,9 @@ code {
 <li>Before starting create a new folder : <code>mkdir $HOME/.local/tools</code></li>
 <li>Here we will install all tools and then create a softlink in <code>$HOME/.local/bin</code></li>
 </ul>
+<hr>
 <h3 id="apktool-android"><strong>APKTOOL (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Tool for unpacking APK</p>
@@ -473,6 +476,7 @@ java -jar ~/.local/tools/apktool/apktool.jar $@
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="adb-android"><strong>ADB (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Tool to communicate with emulator and real android device for debugging and testing purposes</p>
@@ -496,6 +500,7 @@ java -jar ~/.local/tools/apktool/apktool.jar $@
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="jadx-android"><strong>JADX (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Tool to unpack APK and convert the <code>dex</code> created in equivalent <code>java</code> class file</p>
@@ -519,6 +524,7 @@ java -jar ~/.local/tools/apktool/apktool.jar $@
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="bytecode-viewer-android"><strong>ByteCode-Viewer (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Advanced Lightweight Java Bytecode Viewer for Android</p>
@@ -555,6 +561,7 @@ java -jar ~/.local/tools/bytecode-viewer/bytecode-viewer.jar $@
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="drozer-android"><strong>Drozer (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Before installing <code>drozer</code>, we need to install some pre-requisites</p>
@@ -605,6 +612,7 @@ python2 ~/.local/tools/drozer/drozer-2.4.4/bin/drozertool $@
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="hopper-android-and-i0s"><strong>Hopper (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Hopper is a disassembler and debugger that runs on Mac OS X or Linux, but not Windows. It has similar functionality to IDA Pro but costs 10x less. And the free version works on 64-bit executables.</p>
@@ -641,6 +649,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="burpzap-traffic-inspection"><strong>Burp/ZAP (Traffic Inspection)</strong></h3>
+<hr>
 <ul>
 <li>Download the latest version from their Website
 <ul>
@@ -655,6 +664,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="frida-and-frida-tools-android-and-i0s"><strong>Frida and Frida-Tools (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Simple Installation</p>
@@ -667,6 +677,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="frida-android-tracer-android"><strong>Frida Android Tracer (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Generates Javascript hook scripts to hook Android classes</p>
@@ -684,6 +695,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="android-backup-extractor-android"><strong>Android Backup Extractor (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Utility to extract and repack Android backups created with <code>adb backup</code></p>
@@ -702,6 +714,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="pidcat-android"><strong>PIDCAT (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Enable colorful <code>adb logcat</code></p>
@@ -717,6 +730,7 @@ sudo apt install libqt5gui5 libqt5xml5 libqt5printsupport5 libqt5network5 libqt5
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="mobsf-android-and-i0s"><strong>MobSF (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Mobile Application Testing framework which can perform DAST and SAST both for Mobile Applications</p>
@@ -761,6 +775,7 @@ ln -s <span class="hljs-variable">$PWD</span>/mobSF ~/.<span class="hljs-built_i
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="androbugs-framework-android"><strong>AndroBugs Framework (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>This will be used to generate the POC <code>.apk</code></p>
@@ -783,6 +798,7 @@ ln -s <span class="hljs-variable">$PWD</span>/androbugs ~/.<span class="hljs-bui
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="qark-framework-android"><strong>QARK Framework (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Check several security related Android application vulnerabilities, either in source code or packaged APKs</p>
@@ -801,6 +817,7 @@ ln -s <span class="hljs-variable">$PWD</span>/androbugs ~/.<span class="hljs-bui
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="rms-dexcalibur-and-passionfruit-android-and-i0s"><strong>RMS, Dexcalibur and Passionfruit (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>These three tools needs to be installed in combination for convinence because they use <code>npm</code> for installation</p>
@@ -869,6 +886,7 @@ node dexcalibur.js
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="radare2-and-r2frida-android-and-i0s"><strong>Radare2 and R2Frida (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>One of the best reverse engineering tool you can ever encounter and to add on it's free</p>
@@ -899,6 +917,7 @@ r2pm -l <span class="hljs-comment"># Listing what all is installed by package ma
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="mara-framework-android"><strong>MARA Framework (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>MARA stands for <code>Mobile Application Reverse engineering and Analysis Framework</code></p>
@@ -923,6 +942,7 @@ git <span class="hljs-built_in">clone</span> --recursive https://github.com/xtia
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="apkid-android"><strong>APKiD (Android)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>APKiD gives you information about how an APK was made</p>
@@ -948,6 +968,7 @@ pip install apkid
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="simplify-android"><strong>Simplify (Android)</strong></h3>
+<hr>
 <ul>
 <li>Deobfuscate the Java Code</li>
 <li>Download the latest release from : <a href="https://github.com/CalebFenton/simplify/releases">Simplify</a></li>
@@ -957,6 +978,7 @@ pip install apkid
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="iproxy-and-ideviceinstaller-i0s"><strong>iProxy and iDeviceInstaller (i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>This will help us in forwarding <code>SSH</code> traffic via USB</p>
@@ -975,6 +997,7 @@ pip install apkid
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="frida-ios-dump-i0s"><strong>Frida-IOS-Dump (i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Extracts unencrypted <code>IPA</code> file from i0S device</p>
@@ -1016,6 +1039,7 @@ iproxy 2222 22
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="grapefruit-i0s"><strong>GrapeFruit (i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Runtime Application Instrumentation for iOS</p>
@@ -1038,6 +1062,7 @@ npm run dev
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
 <h3 id="objection-android-and-i0s"><strong>Objection (Android and i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Awesome tool for dynamic analysis</p>
@@ -1075,7 +1100,8 @@ python3 -m pip install -U objection
 <div class='page'/>
 ☝️ <a href="#">Back to top</a> ☝️
 <hr>
-<h3 id="tools-on-idevice"><strong>Tools on iDevice</strong></h3>
+<h3 id="tools-on-idevice"><strong>Tools on iDevice (i0S)</strong></h3>
+<hr>
 <ul>
 <li>
 <p>Install repositories: <code>BigBoss</code> and <code>build.frida.re</code></p>
@@ -1105,6 +1131,16 @@ apt-get install sqlite3
 <blockquote>
 <p>Also in place of class-dump and class-dump-z, preferred method is dsdump, else you need to thin the FAT file using lipo, which is in-build in iOS</p>
 </blockquote>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="guiscrcpy-android-and-i0s"><strong>GuiScrcpy (Android and i0S)</strong></h3>
+<hr>
+<ul>
+<li>Mirror's your device on your desktop screen and also captures mouse click events</li>
+<li>Installation : <code>sudo snap install scrcpy &amp;&amp; pip3 install -U guiscrcpy --user</code></li>
+</ul>
 <hr>
 <div class='page'/>
 ☝️ <a href="#">Back to top</a> ☝️

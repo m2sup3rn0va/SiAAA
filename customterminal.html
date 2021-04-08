@@ -375,7 +375,7 @@ code {
   </script>
 <h1><b>Terminal Customizations<b></h1>
 <blockquote>
-<p><strong>Owner</strong> : 🧛🏻‍♂️ - Mr. Sup3rN0va | 09-February-2021</p>
+<p><strong>Owner</strong> : 🧛🏻‍♂️ - Mr. Sup3rN0va | 08-April-2021</p>
 </blockquote>
 <blockquote>
 <p><strong>Tags</strong> : #i0S (📲), #android (📱), #pentesting (👨🏼‍💻), #tools (⚒), #cheatsheet (📜)</p>
@@ -400,8 +400,8 @@ code {
 <ul>
 <li>By this time, I assume you have a fresh Ubuntu installed on your VM</li>
 <li>Also, you must be having a rooted Android Emulator</li>
-<li>My recommendation will be to use <code>Ubuntu Server 20.04</code> as there is no GUI and then we can do <code>SSH</code> to do pentesting</li>
-<li>Also, if you are using <code>Ubuntu Server 20.04</code>, you will have option to install <code>openssh-server</code> at the time of OS installation</li>
+<li>My recommendation will be to use <code>Ubuntu Server</code> as there is no GUI and then we can do <code>SSH</code> to do pentesting</li>
+<li>Also, if you are using <code>Ubuntu Server</code>, you will have option to install <code>openssh-server</code> at the time of OS installation</li>
 <li>This makes us to take <code>SSH</code> directly after installing <code>Ubuntu</code> and then, we can copy-paste the commands 🤩🥳👍</li>
 </ul>
 <hr>
@@ -416,18 +416,19 @@ code {
 <li>
 <p><strong>Windows</strong></p>
 <ul>
-<li>Terminal of my choice : <code>Terminus</code></li>
-<li>You can download this from GitHub : <a href="https://github.com/Eugeny/terminus/releases"><strong>Eugeny/Terminus</strong></a></li>
-<li>With this you need to have some additional applications which will support <code>Terminus</code> to achieve it's full potential but <strong>these are only required if you are using <code>Windows</code></strong>
+<li>Terminal of my choice : <code>Windows Terminal</code></li>
+<li>You can download this from Microsoft Store</li>
+<li>With this you need to have some additional applications which will support <code>Windows Terminal</code> to achieve it's full potential but <strong>these are only required if you are using <code>Windows</code></strong>
 <ul>
-<li><strong>VcXSrv - XWindow Server</strong>
+<li><strong>GWSL - XWindow Server for Windows</strong>
 <ul>
-<li>You can download it from : <a href="https://sourceforge.net/projects/portable-x-server/files/"><strong>SourceForge - Portable</strong></a> or you can have an installer : <a href="https://sourceforge.net/projects/vcxsrv/files/vcxsrv/"><strong>SourceForge - Installer</strong></a></li>
+<li>You can download it from Microsoft Store</li>
 </ul>
 </li>
-<li><strong>WinSCP</strong> : Download portable version so as to invoke <code>scp</code> from terminus to transfer data
+<li><strong>WinSCP</strong> : Download portable version so as to invoke <code>scp</code> to transfer data
 <ul>
 <li>You can download it's portable version from :  <a href="https://winscp.net/eng/downloads.php"><strong>Official WebPage - WinSCP</strong></a></li>
+<li>Also, you can use SiAAA scripts created for host to do file transfer from Windows Terminal itself</li>
 </ul>
 </li>
 </ul>
@@ -435,10 +436,9 @@ code {
 <li><strong>Features</strong>
 <ul>
 <li><strong>SSH</strong></li>
-<li><strong>Injecting Environment Variables</strong></li>
 <li><strong>Port Forwarding - Local, Remote and Dynamic</strong></li>
-<li><strong>Inline SCP using WinSCP</strong></li>
-<li><strong>XWindow Server support with VcxSrv</strong></li>
+<li><strong>Inline SCP using SiAAA-Host script</strong></li>
+<li><strong>XWindow Server support with GWSL</strong></li>
 <li><strong>Themes and Customizations</strong></li>
 <li><strong>Most Importantly - &quot;IT'S FREE&quot;</strong> 🥳🥳🥳👍</li>
 </ul>
@@ -517,13 +517,13 @@ apt-update()
 </div></code></pre>
 </li>
 <li>
-<p>Recently I had some issues installing <code>openjdk</code> packages on <code>Ubuntu Server 20.04</code>, not sure why but there were several mismatch hashes.</p>
+<p>Recently I had some issues installing <code>openjdk</code> packages on <code>Ubuntu Server</code>, not sure why but there were several mismatch hashes.</p>
 </li>
 <li>
 <p>To get through, I had to install java from <code>linuxuprising</code>. Use this only if you are not able to install <code>openjdk-14-jdk</code> and <code>openjdk-14-jre</code> from above command</p>
 </li>
 <li>
-<p>To install Java on <code>Ubuntu Server 20.04</code></p>
+<p>To install Java on <code>Ubuntu Server</code></p>
 <pre class="hljs"><code><div>sudo add-apt-repository ppa:linuxuprising/java
 apt-update <span class="hljs-comment"># This will only work if you have set above .zsh_profile</span>
 sudo apt install oracle-java15-installer
@@ -535,7 +535,7 @@ java --version <span class="hljs-comment"># Once Java is installed</span>
 <p>This will install all the required pre-requisite packages</p>
 </li>
 <li>
-<p>If you are using <code>Ubuntu Server 20.04</code>, then this step is not needed because <code>SSH</code> is by-default enabled, but just in case if you are setting this up on any other VM Guest then, just enable <code>SSH</code> on VM by typing : <code>sudo systemctl start ssh</code> and you need to enable it at boot so : <code>sudo systemctl enable ssh</code></p>
+<p>If you are using <code>Ubuntu Server</code>, then this step is not needed because <code>SSH</code> is by-default enabled, but just in case if you are setting this up on any other VM Guest then, just enable <code>SSH</code> on VM by typing : <code>sudo systemctl start ssh</code> and you need to enable it at boot so : <code>sudo systemctl enable ssh</code></p>
 </li>
 <li>
 <p>You can check <code>SSH</code> status as : <code>sudo systemctl status ssh</code></p>
@@ -891,7 +891,13 @@ apt-update()
 </blockquote>
 <p><img src="screenshots/final.png" alt=""></p>
 <blockquote>
-<p><a href="toolinstall.html"><strong>Next Page - Tools Installation</strong></a></p>
+<strong>||</strong>
+<a href="pre-req.html"><strong>Pre-Requisites</strong></a>
+<strong>||</strong>
+<a href="toolinstall.html"><strong>Mobile Pentesting Tools Installation</strong></a>
+<strong>||</strong>
+<a href="siaaa.html"><strong>SiAAA - AutoInstall Scripts</strong></a>
+<strong>||</strong>
 </blockquote>
 
 </body>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SiAAA - ToolsInstallation</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 22px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+	background-color: #1b1b1c;
+	color: #FFF;
+	max-width: 1500px;
+	margin: auto;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color:  burlywood;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	color: #34aced;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: "Courier New", Menlo, Monaco, Consolas, "Droid Sans Mono", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: "Courier New", -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><img src="screenshots/Front1.png" alt=""></p>
+<blockquote>
+<p><strong>Owner</strong> : 🧛🏻‍♂️ - Mr. Sup3rN0va | 08-April-2021</p>
+</blockquote>
+<blockquote>
+<p><strong>Tags</strong> : #i0S (📲), #android (📱), #pentesting (👨🏼‍💻), #tools (⚒), #cheatsheet (📜)</p>
+</blockquote>
+<hr>
+<h2 id="siaaa---autoinstall-scripts"><strong>SiAAA - AutoInstall Scripts</strong></h2>
+<hr>
+<ul>
+<li>Stands for <strong>&quot;Setup for i0S and Android Application Analysis&quot;</strong></li>
+<li>This toolkit is to install required tools for <strong>i0S</strong> and <strong>Android</strong> application pentesting</li>
+<li>All these tools are installed and tested on <code>Ubuntu Server</code> but will work with all debian based flavours</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="features"><strong>Features</strong></h2>
+<hr>
+<ul>
+<li><strong>Auto-Install all the tools in one go</strong></li>
+<li><strong>Support for both Windows and Linux host machines</strong></li>
+<li><strong>X11 Forwarding enabled to work with GUI tools</strong></li>
+<li><strong>Auto SSH setup for both Windows and Linux host machines</strong></li>
+<li><strong>Enabled port forwarding to access emulator and tools like RMS, Dexcalibur, MobSF etc.</strong></li>
+<li><strong>Includes</strong> <a href="https://m2sup3rn0va.github.io/LazySSH/"><strong>LazySSH</strong></a> <strong>which is an ease to do SSH and data transfer</strong></li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h2 id="installation"><strong>Installation</strong></h2>
+<hr>
+<h3 id="windows-host"><strong>WINDOWS HOST</strong></h3>
+<hr>
+<ul>
+<li>
+<p>Assuming you have a windows machine with ubuntu installed in virtual box and enabled openssh server so that we can take <code>SSH</code> of the VM</p>
+</li>
+<li>
+<p>Now, extract the file <code>SiAAA-Windows.zip</code> and you will find two archives in it. One is for <strong>Windows</strong> machine and other is for <strong>Ubuntu</strong> VM</p>
+</li>
+<li>
+<p>Extract <code>SiAAA-Host</code> and you will see this</p>
+<p><img src="screenshots/siaaa-1.png" alt=""></p>
+</li>
+<li>
+<p>First step will be to install the font. I <img class="emoji" alt="heart" src="data:image/png;base64,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" /> <code>Fira Code</code>, so I added that in the package but you can download any other font of your choice but it should be a <code>Nerd Font</code>. This is because the font ligatures can render emojis and other images which will make our terminal visually appealing</p>
+</li>
+<li>
+<p>Once done, open <code>Windows Terminal</code> and set this font as</p>
+<pre class="hljs"><code><div>&quot;fontFace&quot;: &quot;FiraCode NF&quot;,
+&quot;fontWeight&quot;: &quot;bold&quot;,
+&quot;fontSize&quot;: 14,
+</div></code></pre>
+<p>It should look like</p>
+<p><img src="screenshots/siaaa-2.png" alt=""></p>
+<p><img src="screenshots/siaaa-3.png" alt=""></p>
+</li>
+<li>
+<p>Once done, save the notepad file and close it.</p>
+</li>
+<li>
+<p>Now, set the execution policy in powershell to allow scripts to run. Copy-paste below on the terminal</p>
+<p><code>Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser</code></p>
+</li>
+<li>
+<p>Then run the powershell script <code>install_SiAAA.ps1</code></p>
+</li>
+<li>
+<p>This will come up as</p>
+<p><img src="screenshots/siaaa-4.png" alt=""></p>
+</li>
+<li>
+<p>Now the script will ask details like:</p>
+<ul>
+<li>Hostname of the VM : <code>server</code></li>
+<li>IP of the VM to SSH : <code>192.168.19.131</code></li>
+<li>Port for SSH : <code>22</code></li>
+<li>Username to SSH : <code>user</code></li>
+</ul>
+<p>You can set these values as per your VM and it will show as</p>
+<p><img src="screenshots/siaaa-5.png" alt=""></p>
+<p>Make sure that Ubuntu VM is running before running the script because the installer will generate new keys and add it to the VM so that you can have passwordless entry</p>
+</li>
+<li>
+<p>Once done, restart the terminal or open a new tab and type <code>SiAAA</code></p>
+<p><img src="screenshots/siaaa-6.png" alt=""></p>
+</li>
+<li>
+<p>You can see the commands as :</p>
+<ul>
+<li><code>ssh -hostName b0x</code> : SSH to the VM</li>
+<li><code>Send-Data -filename &lt;filename&gt; -hostName box</code> : Send data to VM and save it in <code>$HOME</code> of the VM</li>
+<li><code>Get-Data -filename &lt;filename&gt; -hostName box</code> : Get data from VM from <code>$HOME</code> folder only</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>GOOD NEWS</strong> : Above three commands supports argument-based tab completion</p>
+</blockquote>
+<hr>
+<h3 id="linux-host"><strong>LINUX HOST</strong></h3>
+<hr>
+<ul>
+<li>Assuming that you have a Linux(Ubuntu) machine with virtualization software installed (VirtualBox) and you have UbuntuServer (tested on this) installed as Guest OS and enabled openssh server so that we can take <code>SSH</code> of the VM</li>
+<li>If above is true, then the steps are as follows:
+<ul>
+<li>
+<p>Extract the <code>SiAAA-Linux.tar.xz</code> file</p>
+<p><img src="screenshots/siaaa-15.png" alt=""></p>
+</li>
+<li>
+<p>Install the font just like how we did it in windows and change the font on the terminal for better rendering</p>
+</li>
+<li>
+<p>Run the script <code>install_SiAAA</code></p>
+<p><img src="screenshots/siaaa-16.png" alt=""></p>
+<p><img src="screenshots/siaaa-17.png" alt=""></p>
+<p><img src="screenshots/siaaa-18.png" alt=""></p>
+</li>
+<li>
+<p>This will install all the dependencies and when once done, restart the terminal and type <code>SiAAA</code></p>
+<p><img src="screenshots/siaaa-19.png" alt=""></p>
+</li>
+<li>
+<p>For data transfer, we are using my <a href="https://m2sup3rn0va.github.io/LazySSH/">LazySSH</a> script which will create mount points on either side for data transfer</p>
+</li>
+<li>
+<p>Type <code>ssh-mount -n server</code>. Here <code>server</code> is the hostname we initially gave to do <code>ssh</code></p>
+</li>
+<li>
+<p>This will create <code>Local_server</code> and <code>Remote_server</code> mount points</p>
+<p><img src="screenshots/siaaa-20.png" alt=""></p>
+<p><img src="screenshots/siaaa-21.png" alt=""></p>
+<p><img src="screenshots/siaaa-22.png" alt=""></p>
+</li>
+<li>
+<p>Now you can directly copy-paste data to <code>Local_server</code> and it will get reflected to <code>Remote_server</code> and vice versa</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="siaaa-vm"><strong>SiAAA-VM</strong></h3>
+<hr>
+<ul>
+<li>
+<p>This is same for both the platforms because now we are going to install all the tools inside the VM. The platform specific changes are very few</p>
+</li>
+<li>
+<p>From <strong>Windows</strong> host, you can use the command <code>Send-Data</code> to send <code>SiAAA-VM.tar.gz</code> to the VM</p>
+</li>
+<li>
+<p>From <strong>Linux</strong> host, you can use <code>ssh-mount</code> folder to dump the file so that it can be shared between host and guest</p>
+</li>
+<li>
+<p>Now that the file is inside Ubuntu VM, extract it using <code>tar -xvf SiAAA-VM.tar.gz</code> and cd to <code>SiAAA-VM</code> and run the script <code>./SiAAA</code></p>
+</li>
+<li>
+<p>Now this will take time because this will auto-install all the dependencies and do full system upgrade as well. You need to be patient for (30 min)</p>
+<p><img src="screenshots/siaaa-7.png" alt=""></p>
+<p><img src="screenshots/siaaa-8.png" alt=""></p>
+<p><img src="screenshots/siaaa-9.png" alt=""></p>
+</li>
+<li>
+<p>Now here the script will prompt you to add IP. This IP is to export X11 from Ubuntu VM to host Windows machine so that you can run GUI based applications like <code>jadx-gui</code> and others.</p>
+</li>
+<li>
+<p>Here you can give IP of your Windows machine <strong>LAN/WLAN</strong> interface IP and allow firewall rule (if prompted) so that VM can access it to forward <code>X11</code>. <code>This will not be there when you use Linux host</code></p>
+<p><img src="screenshots/siaaa-10.png" alt=""></p>
+<blockquote>
+<p>Also make sure that you run <code>GWSL</code> before running any GUI apps because you need to enable <code>X11</code> on host also</p>
+</blockquote>
+</li>
+<li>
+<p>The script will ask you to restart the terminal mutiple times while installing <code>NVM</code></p>
+<p><img src="screenshots/siaaa-11.png" alt=""></p>
+<p>For this you need to logout <code>ssh</code> and login back</p>
+</li>
+<li>
+<p>Once you re-run the script it will install <code>nvm, node and npm</code></p>
+</li>
+<li>
+<p>This is how <code>SiAAA</code> menu looks like after installing all the dependencies</p>
+<p><img src="screenshots/siaaa-12.png" alt=""></p>
+</li>
+<li>
+<p>You have an option to either install all the tools in one go or you can install them one by one</p>
+</li>
+<li>
+<p>You also have an option to customize your terminal which will make your terminal more colorful, add new visuals and adds a lot to your <code>VIM</code> making it a perfect IDE for script writing</p>
+</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<h3 id="terminal-customization"><strong>Terminal Customization</strong></h3>
+<hr>
+<ul>
+<li>With <code>SiAAA-Installer</code>, you are given with an option to customize your terminal</li>
+<li>Menu ID for customization is <code>T</code></li>
+<li>This will install
+<ul>
+<li><code>ZSH and Oh-My-ZSH</code> and its themes</li>
+<li><code>TMUX</code> and its themes</li>
+<li><code>VIM</code> and its features</li>
+</ul>
+</li>
+<li>Although not a part of this customization script but when you run <code>SiAAA</code>, then it will install
+<ul>
+<li><code>batcat</code></li>
+<li><code>exa</code></li>
+<li><code>screenfetch</code></li>
+<li><code>lolcat</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<p><strong>IMP-NOTE</strong> : While installing <code>Oh-My-ZSH</code>, it will ask you to change the shell (Y/N), hit (Y) and enter the password and then hit <code>Control+D</code> because it will take you to <code>ZSH</code> shell thus interrupting your script progress. Once you hit <code>Control+D</code>, you will logout of the shell and the script continues to install other features</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img src="screenshots/siaaa-13.png" alt=""></p>
+<p><img src="screenshots/siaaa-14.png" alt=""></p>
+<hr>
+<h2 id="note"><strong>NOTE</strong></h2>
+<hr>
+<ul>
+<li>This doesn't have all the tools</li>
+<li>Will keep on updating the wiki as and when will work on new tools</li>
+</ul>
+<hr>
+<div class='page'/>
+☝️ <a href="#">Back to top</a> ☝️
+<hr>
+<blockquote>
+<strong>||</strong>
+<a href="pre-req.html"><strong>Pre-Requisites</strong></a>
+<strong>||</strong>
+<a href="customterminal.html"><strong>Customize My Terminal</strong></a>
+<strong>||</strong>
+<a href="toolinstall.html"><strong>Mobile Pentesting Tools Installation</strong></a>
+<strong>||</strong>
+</blockquote>
+
+</body>
+</html>
